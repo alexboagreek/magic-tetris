@@ -1,20 +1,25 @@
-import { SIZE_BLOCK, COLUMNS, ROWS } from "../script";
+import { SIZE_BLOCK, COLUMNS, ROWS } from "../index.js";
 
 export class View {
-  constructor (container) {
+  constructor(container) {
     this.container = container;
+    this.preview();
   }
- 
+
   colors = {
     J: "FireBrick",
-    I: "CadetBlue",
-    O: "Gold",
-    L: "SlateBlue",
-    2: "RoyalBlue",
-    S: "MediumSeaGreen",
+    I: "Orange",
+    O: "Green",
+    L: "Blue",
+    2: "Yellow",
+    T: "Red",
+    S: "Gray",
   };
 
   canvas = document.createElement("canvas");
+  context = this.canvas.getContext("2d");
+
+  preview() {}
 
   init() {
     this.canvas.classList.add("game-area");
@@ -22,8 +27,6 @@ export class View {
     this.canvas.width = SIZE_BLOCK * COLUMNS;
     this.canvas.height = SIZE_BLOCK * ROWS;
   }
-
-  context = this.canvas.getContext("2d");
 
   showArea(area) {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -35,7 +38,7 @@ export class View {
         const block = line[x];
         if (block !== "o") {
           this.context.fillStyle = this.colors[block];
-          this.context.strokeStyle = "white";
+          this.context.strokeStyle = "#fff";
           this.context.fillRect(
             x * SIZE_BLOCK,
             y * SIZE_BLOCK,
@@ -51,5 +54,5 @@ export class View {
         }
       }
     }
-  };
+  }
 }
