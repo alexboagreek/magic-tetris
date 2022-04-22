@@ -1,15 +1,22 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 h1 {
     text-align: center;
     margin-bottom: 50px;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 .container {
+    display: grid;
     width: 500px;
     margin: 0 auto;
+    gap: 50px;
+    align-items: flex-start;
+    grid-template-areas: 
+    'game score'
+    'game next' ;
 }
 
 .game-area {
@@ -20,4 +27,16 @@ h1 {
 .magic__span {
     color: olive;
     font-weight: 900;
+}
+
+.preview {
+    border: 3px solid green;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+    grid-column: 1 / 3;
+    border-radius: 9px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Yusei Magic', sans-serif;
 }

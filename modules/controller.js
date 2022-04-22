@@ -2,7 +2,6 @@ export class Controller {
     constructor(game, view) {
       this.game = game;
       this.view = view;
-      this.view.init();
     }
   
     init(codeKey) {
@@ -16,7 +15,23 @@ export class Controller {
   
     start() {
       this.view.showArea(this.game.viewArea);
-  
+      const showScore = this.view.createBlockScore();
+      const showNextTetromino = this.view.createBlockNextTetromino();
+      
+      this.game.createUpdatePanels( showScore, showNextTetromino );
+      
+      const tick = () => {
+        const time = (2200 - 200 * this.game.lvl);
+        if (this.game.gameOver) return;
+        setTimeout(() => {
+          this.game.moveDown();
+          this.view.showArea(this.game.viewArea);
+          tick()
+        }, time > 200 ? time : 200)
+      };
+      tick();
+
+
       setInterval(() => {
         this.game.moveDown();
         this.view.showArea(this.game.viewArea);
